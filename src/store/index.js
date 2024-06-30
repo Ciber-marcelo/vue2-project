@@ -16,7 +16,8 @@ export default new Vuex.Store({
                email: user.email,
                first_name: user.first_name,
                last_name: user.last_name,
-               avatar: user.avatar
+               avatar: user.avatar,
+               job: ''
             })
          });
       },
@@ -26,8 +27,20 @@ export default new Vuex.Store({
             email: user.first_name.toLowerCase() + '@reqres.in',
             first_name: user.first_name,
             last_name: '',
-            avatar: 'https://steamuserimages-a.akamaihd.net/ugc/1840293437825343403/5B80946AB11E24DE4D798CF82F1B1C2E3EB36ADA/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
+            job: user.job,
+            avatar: 'https://img.freepik.com/vetores-premium/icone-de-perfil-de-usuario-avatar-ou-icone-de-pessoa-simbolo-de-perfil-silhueta-de-genero-neutro-foto-de-avatar-de-botao-de-circulo-ilustracao-vetorial-imagem-de-stock_797523-1722.jpg'
          });
+      },
+      UPDATE_USER(state, updatedUser) {
+         //'findIndex retorna o indice de um usuauro dentro de "users", mas se n encontrar nenhum ele retorna "-1"
+         const index = state.users.findIndex(user => user.id === updatedUser.id);
+         if (index !== -1) {
+            //"vue.set" é uma maneira melhor do que a convencional para atualizar um item, pesquise mais sobre se tiver duvidas
+            Vue.set(state.users, index, updatedUser);
+         }
+      },
+      DELETE_USER(state, userId) {
+         state.users = state.users.filter(user => user.id !== userId);
       },
    },
    actions: {
@@ -46,6 +59,22 @@ export default new Vuex.Store({
             commit('ADD_USER', response.data);
          } catch (error) {
             console.error('Erro ao criar usuário:', error);
+         }
+      },
+      async updateUser({ commit }, user) {
+         try {
+            const response = await axios.put(`https://reqres.in/api/users/${user.id}`, user);
+            commit('UPDATE_USER', response.data);
+         } catch (error) {
+            console.error('Error updating user:', error);
+         }
+      },
+      async deleteUser({ commit }, userId) {
+         try {
+            await axios.delete(`https://reqres.in/api/users/${userId}`);
+            commit('DELETE_USER', userId);
+         } catch (error) {
+            console.error('Error deleting user:', error);
          }
       },
    },

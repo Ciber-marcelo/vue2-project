@@ -1,7 +1,7 @@
 <template>
    <div class="list">
       <UserCard v-for="user in users" :key="user.id" :id="user.id" :photo="user.avatar" :name="user.first_name + ' ' + user.last_name"
-         :email="user.email" />
+         :email="user.email" :job="user.job" />
    </div>
 </template>
 

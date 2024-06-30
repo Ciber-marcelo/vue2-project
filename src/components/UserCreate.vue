@@ -149,7 +149,7 @@ export default {
 .input {
    width: 100%;
    height: 55px;
-   padding-left: 20px;
+   padding: 0 20px;
    border: 1px solid #E5E5E5;
    border-radius: 5px;
    box-sizing: border-box;

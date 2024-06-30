@@ -28,7 +28,8 @@
             <button @click="deleteUserHandler(user.id)" class="btn">
                <img src="../assets/icons/trash.png" style="width: 15px; height: 17px;" alt="trash">
             </button>
-            <button @click="goToDetailsUser(id)" class="btn">
+            <!-- o "button" de view só aparece pros usuarios da propia api, ele n aparecera para usuarios criados -->
+            <button @click="goToDetailsUser(id)" class="btn" v-show="id <= 6">
                <img src="../assets/icons/eye.png" style="width: 22px; height: 16px;" alt="view">
             </button>
          </div>

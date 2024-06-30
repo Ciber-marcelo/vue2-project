@@ -97,6 +97,10 @@ export default {
   width: 100%;
   max-width: 588px;
   margin-bottom: 30px;
+
+  @media (max-width: 400px) {
+    gap: 17px;
+  }
 }
 
 .container2 img {
@@ -122,7 +126,9 @@ export default {
   gap: 7px;
   font-family: "Montserrat", sans-serif;
   overflow: hidden;
+}
 
+.container2 .containerText{
   @media (max-width: 400px) {
     align-items: center;
   }

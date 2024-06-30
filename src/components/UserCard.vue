@@ -9,13 +9,13 @@
             <div class="email">{{ email }}</div>
          </div>
          <div class="icons">
-            <button class="btn">
+            <router-link to="/editUser" class="btn">
                <img src="../assets/icons/editBox.png" style="width: 17px; height: 17px;" alt="edit">
-            </button>
+            </router-link>
             <button class="btn">
                <img src="../assets/icons/trash.png" style="width: 15px; height: 17px;" alt="trash">
             </button>
-            <button class="btn">
+            <button @click="goToDetailsUser(id)" class="btn">
                <img src="../assets/icons/eye.png" style="width: 22px; height: 16px;" alt="view">
             </button>
          </div>
@@ -28,11 +28,15 @@
 export default {
    name: 'UserCard',
    props: {
-      // msg: String,
       id: Number,
       photo: String,
       name: String,
       email: String
+   },
+   methods:  {
+      goToDetailsUser(userId) {
+         this.$router.push({ name: 'User', params: { id: userId } })
+      }
    }
 }
 </script>

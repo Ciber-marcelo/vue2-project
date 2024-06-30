@@ -1,19 +1,19 @@
 <template>
   <div class="home">
     <UserCreate />
-    <ApiData/>
+    <UserList/>
   </div>
 </template>
 
 <script>
-import ApiData from '@/components/ApiData.vue';
+import UserList from '@/components/UserList.vue';
 import UserCreate from '@/components/UserCreate.vue';
 
 export default {
   name: 'HomeUsers',
   components: {
     UserCreate,
-    ApiData,
+    UserList,
   }
 }
 </script>
@@ -24,6 +24,5 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 15px;
 }
 </style>

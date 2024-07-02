@@ -28,7 +28,7 @@
             <button @click="deleteUserHandler(user.id)" class="btn">
                <img src="../assets/icons/trash.png" style="width: 15px; height: 17px;" alt="trash">
             </button>
-            <!-- o "button" de view só aparece pros usuarios da propia api, ele n aparecera para usuarios criados -->
+            <!-- fiz uma regra para "button" de view aparecer apenas para os usuarios da propia api, ele nao aparecera para usuarios criados -->
             <button @click="goToDetailsUser(id)" class="btn" v-show="id <= 6">
                <img src="../assets/icons/eye.png" style="width: 22px; height: 16px;" alt="view">
             </button>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
    name: 'UserCard',
@@ -49,6 +49,7 @@ export default {
       email: String,
       job: String,
    },
+   //o "data()" é similar ao "useState" do react
    data() {
       return {
          edit: false,
@@ -62,16 +63,7 @@ export default {
          },
       };
    },
-   computed: {
-      ...mapState(['users']),
-   },
    methods: {
-      goToDetailsUser(userId) {
-         this.$router.push({ name: 'User', params: { id: userId } })
-      },
-      toggleEdit() {
-         this.edit = !this.edit;
-      },
       ...mapActions(['updateUser', 'deleteUser']),
       submitEdit() {
          this.updateUser(this.user);
@@ -79,6 +71,12 @@ export default {
       },
       deleteUserHandler(userId) {
          this.deleteUser(userId);
+      },
+      goToDetailsUser(userId) {
+         this.$router.push({ name: 'User', params: { id: userId } })
+      },
+      toggleEdit() {
+         this.edit = !this.edit;
       },
    }
 }

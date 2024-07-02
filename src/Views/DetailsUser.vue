@@ -57,6 +57,7 @@ export default {
       support: '',
     };
   },
+  
   async created() {
     try {
       const response = await axios.get(`https://reqres.in/api/users/${this.id}`);

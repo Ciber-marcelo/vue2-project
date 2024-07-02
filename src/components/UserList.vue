@@ -19,16 +19,16 @@ export default {
       ...mapState(['users']),
    },
 
-   //O ciclo de vida "created", é chamado asim que o componente é criado (ele é parecido com o useEfect do React).
-   created() {
-      this.fetchUsers();
-   },
-
    methods: {
       ...mapActions(['fetchUsers', 'createUser']),
       submitUser() {
          this.createUser(this.newUser);
       },
+   },
+
+   //O ciclo-de-vida/hook "created", é chamado asim que o componente é criado (ele é parecido com o useEfect do React).
+   created() {
+      this.fetchUsers();
    },
 };
 </script>

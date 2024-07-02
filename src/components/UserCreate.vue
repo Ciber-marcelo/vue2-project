@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import TitlePage from '../components/TitlePage.vue';
 
 export default {
@@ -46,11 +46,8 @@ export default {
          visible: false,
       };
    },
-   computed: {
-      ...mapState(['users']),
-   },
    methods: {
-      ...mapActions(['fetchUsers', 'createUser']),
+      ...mapActions(['createUser']),
       submitUser() {
          this.createUser(this.newUser);
       },
